@@ -309,6 +309,94 @@ func (x *FibonacciResponse) GetResult() uint32 {
 	return 0
 }
 
+type AverageRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Number        float64                `protobuf:"fixed64,1,opt,name=number,proto3" json:"number,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AverageRequest) Reset() {
+	*x = AverageRequest{}
+	mi := &file_calculator_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AverageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AverageRequest) ProtoMessage() {}
+
+func (x *AverageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_calculator_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AverageRequest.ProtoReflect.Descriptor instead.
+func (*AverageRequest) Descriptor() ([]byte, []int) {
+	return file_calculator_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *AverageRequest) GetNumber() float64 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+type AverageResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Result        float64                `protobuf:"fixed64,1,opt,name=result,proto3" json:"result,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AverageResponse) Reset() {
+	*x = AverageResponse{}
+	mi := &file_calculator_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AverageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AverageResponse) ProtoMessage() {}
+
+func (x *AverageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_calculator_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AverageResponse.ProtoReflect.Descriptor instead.
+func (*AverageResponse) Descriptor() ([]byte, []int) {
+	return file_calculator_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *AverageResponse) GetResult() float64 {
+	if x != nil {
+		return x.Result
+	}
+	return 0
+}
+
 var File_calculator_proto protoreflect.FileDescriptor
 
 const file_calculator_proto_rawDesc = "" +
@@ -336,11 +424,16 @@ const file_calculator_proto_rawDesc = "" +
 	"\x10FibonacciRequest\x12\f\n" +
 	"\x01n\x18\x01 \x01(\rR\x01n\"+\n" +
 	"\x11FibonacciResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\rR\x06result2\x8e\x01\n" +
+	"\x06result\x18\x01 \x01(\rR\x06result\"(\n" +
+	"\x0eAverageRequest\x12\x16\n" +
+	"\x06number\x18\x01 \x01(\x01R\x06number\")\n" +
+	"\x0fAverageResponse\x12\x16\n" +
+	"\x06result\x18\x01 \x01(\x01R\x06result2\xd0\x01\n" +
 	"\n" +
 	"Calculator\x128\n" +
 	"\x05Hello\x12\x16.services.HelloRequest\x1a\x17.services.HelloResponse\x12F\n" +
-	"\tFibonacci\x12\x1a.services.FibonacciRequest\x1a\x1b.services.FibonacciResponse0\x01B\fZ\n" +
+	"\tFibonacci\x12\x1a.services.FibonacciRequest\x1a\x1b.services.FibonacciResponse0\x01\x12@\n" +
+	"\aAverage\x12\x18.services.AverageRequest\x1a\x19.services.AverageResponse(\x01B\fZ\n" +
 	"./servicesb\x06proto3"
 
 var (
@@ -355,28 +448,32 @@ func file_calculator_proto_rawDescGZIP() []byte {
 	return file_calculator_proto_rawDescData
 }
 
-var file_calculator_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_calculator_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_calculator_proto_goTypes = []any{
 	(*HelloRequest)(nil),          // 0: services.HelloRequest
 	(*HelloResponse)(nil),         // 1: services.HelloResponse
 	(*Person)(nil),                // 2: services.Person
 	(*FibonacciRequest)(nil),      // 3: services.FibonacciRequest
 	(*FibonacciResponse)(nil),     // 4: services.FibonacciResponse
-	nil,                           // 5: services.Person.ConutriesEntry
-	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
-	(Gender)(0),                   // 7: services.Gender
+	(*AverageRequest)(nil),        // 5: services.AverageRequest
+	(*AverageResponse)(nil),       // 6: services.AverageResponse
+	nil,                           // 7: services.Person.ConutriesEntry
+	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
+	(Gender)(0),                   // 9: services.Gender
 }
 var file_calculator_proto_depIdxs = []int32{
-	6, // 0: services.HelloRequest.create_date:type_name -> google.protobuf.Timestamp
-	7, // 1: services.Person.gender:type_name -> services.Gender
-	5, // 2: services.Person.conutries:type_name -> services.Person.ConutriesEntry
-	6, // 3: services.Person.create_date:type_name -> google.protobuf.Timestamp
+	8, // 0: services.HelloRequest.create_date:type_name -> google.protobuf.Timestamp
+	9, // 1: services.Person.gender:type_name -> services.Gender
+	7, // 2: services.Person.conutries:type_name -> services.Person.ConutriesEntry
+	8, // 3: services.Person.create_date:type_name -> google.protobuf.Timestamp
 	0, // 4: services.Calculator.Hello:input_type -> services.HelloRequest
 	3, // 5: services.Calculator.Fibonacci:input_type -> services.FibonacciRequest
-	1, // 6: services.Calculator.Hello:output_type -> services.HelloResponse
-	4, // 7: services.Calculator.Fibonacci:output_type -> services.FibonacciResponse
-	6, // [6:8] is the sub-list for method output_type
-	4, // [4:6] is the sub-list for method input_type
+	5, // 6: services.Calculator.Average:input_type -> services.AverageRequest
+	1, // 7: services.Calculator.Hello:output_type -> services.HelloResponse
+	4, // 8: services.Calculator.Fibonacci:output_type -> services.FibonacciResponse
+	6, // 9: services.Calculator.Average:output_type -> services.AverageResponse
+	7, // [7:10] is the sub-list for method output_type
+	4, // [4:7] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
 	4, // [4:4] is the sub-list for extension extendee
 	0, // [0:4] is the sub-list for field type_name
@@ -394,7 +491,7 @@ func file_calculator_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_calculator_proto_rawDesc), len(file_calculator_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
