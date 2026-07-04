@@ -23,7 +23,8 @@ func main() {
 	calculatorService := services.NewCalculatorService(calculatorClient)
 
 	// err = calculatorService.Hello("Boat")
-	err = calculatorService.Fibonacci(10)
+	// err = calculatorService.Fibonacci(10)
+	err = calculatorService.Average(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
 	if err != nil {
 		log.Fatal(err)
