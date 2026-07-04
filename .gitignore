@@ -1,1 +1,7 @@
 .claude
+
+# TLS: generated key/cert material — never commit private keys.
+# Regenerate locally with `cd tls && ./gen.sh`
+tls/*
+!tls/gen.sh
+!tls/ssl.cnf
