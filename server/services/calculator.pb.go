@@ -221,6 +221,94 @@ func (x *Person) GetCreateDate() *timestamppb.Timestamp {
 	return nil
 }
 
+type FibonacciRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	N             uint32                 `protobuf:"varint,1,opt,name=n,proto3" json:"n,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FibonacciRequest) Reset() {
+	*x = FibonacciRequest{}
+	mi := &file_calculator_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FibonacciRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FibonacciRequest) ProtoMessage() {}
+
+func (x *FibonacciRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_calculator_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FibonacciRequest.ProtoReflect.Descriptor instead.
+func (*FibonacciRequest) Descriptor() ([]byte, []int) {
+	return file_calculator_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *FibonacciRequest) GetN() uint32 {
+	if x != nil {
+		return x.N
+	}
+	return 0
+}
+
+type FibonacciResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Result        uint32                 `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FibonacciResponse) Reset() {
+	*x = FibonacciResponse{}
+	mi := &file_calculator_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FibonacciResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FibonacciResponse) ProtoMessage() {}
+
+func (x *FibonacciResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_calculator_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FibonacciResponse.ProtoReflect.Descriptor instead.
+func (*FibonacciResponse) Descriptor() ([]byte, []int) {
+	return file_calculator_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *FibonacciResponse) GetResult() uint32 {
+	if x != nil {
+		return x.Result
+	}
+	return 0
+}
+
 var File_calculator_proto protoreflect.FileDescriptor
 
 const file_calculator_proto_rawDesc = "" +
@@ -244,10 +332,15 @@ const file_calculator_proto_rawDesc = "" +
 	"createDate\x1a<\n" +
 	"\x0eConutriesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012F\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\" \n" +
+	"\x10FibonacciRequest\x12\f\n" +
+	"\x01n\x18\x01 \x01(\rR\x01n\"+\n" +
+	"\x11FibonacciResponse\x12\x16\n" +
+	"\x06result\x18\x01 \x01(\rR\x06result2\x8e\x01\n" +
 	"\n" +
 	"Calculator\x128\n" +
-	"\x05Hello\x12\x16.services.HelloRequest\x1a\x17.services.HelloResponseB\fZ\n" +
+	"\x05Hello\x12\x16.services.HelloRequest\x1a\x17.services.HelloResponse\x12F\n" +
+	"\tFibonacci\x12\x1a.services.FibonacciRequest\x1a\x1b.services.FibonacciResponse0\x01B\fZ\n" +
 	"./servicesb\x06proto3"
 
 var (
@@ -262,24 +355,28 @@ func file_calculator_proto_rawDescGZIP() []byte {
 	return file_calculator_proto_rawDescData
 }
 
-var file_calculator_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_calculator_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_calculator_proto_goTypes = []any{
 	(*HelloRequest)(nil),          // 0: services.HelloRequest
 	(*HelloResponse)(nil),         // 1: services.HelloResponse
 	(*Person)(nil),                // 2: services.Person
-	nil,                           // 3: services.Person.ConutriesEntry
-	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
-	(Gender)(0),                   // 5: services.Gender
+	(*FibonacciRequest)(nil),      // 3: services.FibonacciRequest
+	(*FibonacciResponse)(nil),     // 4: services.FibonacciResponse
+	nil,                           // 5: services.Person.ConutriesEntry
+	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
+	(Gender)(0),                   // 7: services.Gender
 }
 var file_calculator_proto_depIdxs = []int32{
-	4, // 0: services.HelloRequest.create_date:type_name -> google.protobuf.Timestamp
-	5, // 1: services.Person.gender:type_name -> services.Gender
-	3, // 2: services.Person.conutries:type_name -> services.Person.ConutriesEntry
-	4, // 3: services.Person.create_date:type_name -> google.protobuf.Timestamp
+	6, // 0: services.HelloRequest.create_date:type_name -> google.protobuf.Timestamp
+	7, // 1: services.Person.gender:type_name -> services.Gender
+	5, // 2: services.Person.conutries:type_name -> services.Person.ConutriesEntry
+	6, // 3: services.Person.create_date:type_name -> google.protobuf.Timestamp
 	0, // 4: services.Calculator.Hello:input_type -> services.HelloRequest
-	1, // 5: services.Calculator.Hello:output_type -> services.HelloResponse
-	5, // [5:6] is the sub-list for method output_type
-	4, // [4:5] is the sub-list for method input_type
+	3, // 5: services.Calculator.Fibonacci:input_type -> services.FibonacciRequest
+	1, // 6: services.Calculator.Hello:output_type -> services.HelloResponse
+	4, // 7: services.Calculator.Fibonacci:output_type -> services.FibonacciResponse
+	6, // [6:8] is the sub-list for method output_type
+	4, // [4:6] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
 	4, // [4:4] is the sub-list for extension extendee
 	0, // [0:4] is the sub-list for field type_name
@@ -297,7 +394,7 @@ func file_calculator_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_calculator_proto_rawDesc), len(file_calculator_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

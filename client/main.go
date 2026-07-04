@@ -12,7 +12,7 @@ func main() {
 
 	creds := insecure.NewCredentials()
 
-	cc, err := grpc.Dial("localhost:50051", grpc.WithTransportCredentials(creds))
+	cc, err := grpc.NewClient("localhost:50051", grpc.WithTransportCredentials(creds))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -22,7 +22,8 @@ func main() {
 	calculatorClient := services.NewCalculatorClient(cc)
 	calculatorService := services.NewCalculatorService(calculatorClient)
 
-	err = calculatorService.Hello("Boat")
+	// err = calculatorService.Hello("Boat")
+	err = calculatorService.Fibonacci(10)
 
 	if err != nil {
 		log.Fatal(err)
