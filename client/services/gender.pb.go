@@ -21,6 +21,10 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// practice
+// แบบนี้มีข้อเสีย ถ้าเราอัปเดต proto แต่ client ยังใช้เวอร์ชันเดิมอยู่
+// เร้าจะไม่รู้ว่า client เป็นเพศชายจริงไหม
+// ใส่ ตัว 0 เป็น UNKNOW
 type Gender int32
 
 const (

@@ -7,7 +7,8 @@ import "gender.proto";
 import "google/protobuf/timestamp.proto";
 
 service Calculator {
-    rpc Hello(HelloRequest) returns(HelloResponse);   
+    rpc Hello(HelloRequest) returns(HelloResponse);  
+    rpc Fibonacci(FibonacciRequest) returns(stream FibonacciResponse); 
 }
 
 
@@ -35,7 +36,10 @@ message Person {
     google.protobuf.Timestamp create_date = 9;
 }
 
-// practice
-// แบบนี้มีข้อเสีย ถ้าเราอัปเดต proto แต่ client ยังใช้เวอร์ชันเดิมอยู่
-// เร้าจะไม่รู้ว่า client เป็นเพศชายจริงไหม
-// ใส่ ตัว 0 เป็น UNKNOW 
+message FibonacciRequest {
+    uint32 n = 1; 
+}
+
+message FibonacciResponse {
+    uint32 result = 1;
+}

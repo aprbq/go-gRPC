@@ -3,6 +3,10 @@ syntax = "proto3";
 package services;
 option go_package = "./services";
 
+// practice
+// แบบนี้มีข้อเสีย ถ้าเราอัปเดต proto แต่ client ยังใช้เวอร์ชันเดิมอยู่
+// เร้าจะไม่รู้ว่า client เป็นเพศชายจริงไหม
+// ใส่ ตัว 0 เป็น UNKNOW 
 enum Gender {
     UNKNOW = 0;
     MALE = 1;
