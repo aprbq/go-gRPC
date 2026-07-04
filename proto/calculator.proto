@@ -3,14 +3,39 @@ syntax = "proto3";
 package services;
 option go_package = "./services";
 
+import "gender.proto"; 
+import "google/protobuf/timestamp.proto";
+
 service Calculator {
     rpc Hello(HelloRequest) returns(HelloResponse);   
 }
 
+
 message HelloRequest {
     string name = 1;
+    // reserved 1; //จองเลขแท็คไว้ไม่ให้ใช้
+    // reserved "name"; //จองชื่อไว้ไม่ให้ใช้
+    google.protobuf.Timestamp create_date = 2;
+    
 }
 
+//PascalCase
 message HelloResponse {
-    string result = 1;
+    string result = 1; //snack_case
 }
+
+message Person {
+    string name = 1;
+    int32 age = 2;
+    float weight = 3;
+    double height = 4;
+    repeated string phone_number = 5; //slice ของสตริง 
+    Gender gender = 7;
+    map<string, string> conutries = 8;
+    google.protobuf.Timestamp create_date = 9;
+}
+
+// practice
+// แบบนี้มีข้อเสีย ถ้าเราอัปเดต proto แต่ client ยังใช้เวอร์ชันเดิมอยู่
+// เร้าจะไม่รู้ว่า client เป็นเพศชายจริงไหม
+// ใส่ ตัว 0 เป็น UNKNOW 

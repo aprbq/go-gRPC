@@ -9,6 +9,7 @@ package services
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -22,8 +23,11 @@ const (
 )
 
 type HelloRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Name  string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// reserved 1; //จองเลขแท็คไว้ไม่ให้ใช้
+	// reserved "name"; //จองชื่อไว้ไม่ให้ใช้
+	CreateDate    *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=create_date,json=createDate,proto3" json:"create_date,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -65,9 +69,17 @@ func (x *HelloRequest) GetName() string {
 	return ""
 }
 
+func (x *HelloRequest) GetCreateDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateDate
+	}
+	return nil
+}
+
+// PascalCase
 type HelloResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Result        string                 `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"`
+	Result        string                 `protobuf:"bytes,1,opt,name=result,proto3" json:"result,omitempty"` //snack_case
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -109,15 +121,130 @@ func (x *HelloResponse) GetResult() string {
 	return ""
 }
 
+type Person struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Age           int32                  `protobuf:"varint,2,opt,name=age,proto3" json:"age,omitempty"`
+	Weight        float32                `protobuf:"fixed32,3,opt,name=weight,proto3" json:"weight,omitempty"`
+	Height        float64                `protobuf:"fixed64,4,opt,name=height,proto3" json:"height,omitempty"`
+	PhoneNumber   []string               `protobuf:"bytes,5,rep,name=phone_number,json=phoneNumber,proto3" json:"phone_number,omitempty"` //slice ของสตริง
+	Gender        Gender                 `protobuf:"varint,7,opt,name=gender,proto3,enum=services.Gender" json:"gender,omitempty"`
+	Conutries     map[string]string      `protobuf:"bytes,8,rep,name=conutries,proto3" json:"conutries,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	CreateDate    *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=create_date,json=createDate,proto3" json:"create_date,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Person) Reset() {
+	*x = Person{}
+	mi := &file_calculator_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Person) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Person) ProtoMessage() {}
+
+func (x *Person) ProtoReflect() protoreflect.Message {
+	mi := &file_calculator_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Person.ProtoReflect.Descriptor instead.
+func (*Person) Descriptor() ([]byte, []int) {
+	return file_calculator_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Person) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Person) GetAge() int32 {
+	if x != nil {
+		return x.Age
+	}
+	return 0
+}
+
+func (x *Person) GetWeight() float32 {
+	if x != nil {
+		return x.Weight
+	}
+	return 0
+}
+
+func (x *Person) GetHeight() float64 {
+	if x != nil {
+		return x.Height
+	}
+	return 0
+}
+
+func (x *Person) GetPhoneNumber() []string {
+	if x != nil {
+		return x.PhoneNumber
+	}
+	return nil
+}
+
+func (x *Person) GetGender() Gender {
+	if x != nil {
+		return x.Gender
+	}
+	return Gender_UNKNOW
+}
+
+func (x *Person) GetConutries() map[string]string {
+	if x != nil {
+		return x.Conutries
+	}
+	return nil
+}
+
+func (x *Person) GetCreateDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreateDate
+	}
+	return nil
+}
+
 var File_calculator_proto protoreflect.FileDescriptor
 
 const file_calculator_proto_rawDesc = "" +
 	"\n" +
-	"\x10calculator.proto\x12\bservices\"\"\n" +
+	"\x10calculator.proto\x12\bservices\x1a\fgender.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"_\n" +
 	"\fHelloRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"'\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12;\n" +
+	"\vcreate_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"createDate\"'\n" +
 	"\rHelloResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\tR\x06result2F\n" +
+	"\x06result\x18\x01 \x01(\tR\x06result\"\xe5\x02\n" +
+	"\x06Person\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x10\n" +
+	"\x03age\x18\x02 \x01(\x05R\x03age\x12\x16\n" +
+	"\x06weight\x18\x03 \x01(\x02R\x06weight\x12\x16\n" +
+	"\x06height\x18\x04 \x01(\x01R\x06height\x12!\n" +
+	"\fphone_number\x18\x05 \x03(\tR\vphoneNumber\x12(\n" +
+	"\x06gender\x18\a \x01(\x0e2\x10.services.GenderR\x06gender\x12=\n" +
+	"\tconutries\x18\b \x03(\v2\x1f.services.Person.ConutriesEntryR\tconutries\x12;\n" +
+	"\vcreate_date\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"createDate\x1a<\n" +
+	"\x0eConutriesEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x012F\n" +
 	"\n" +
 	"Calculator\x128\n" +
 	"\x05Hello\x12\x16.services.HelloRequest\x1a\x17.services.HelloResponseB\fZ\n" +
@@ -135,19 +262,27 @@ func file_calculator_proto_rawDescGZIP() []byte {
 	return file_calculator_proto_rawDescData
 }
 
-var file_calculator_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_calculator_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_calculator_proto_goTypes = []any{
-	(*HelloRequest)(nil),  // 0: services.HelloRequest
-	(*HelloResponse)(nil), // 1: services.HelloResponse
+	(*HelloRequest)(nil),          // 0: services.HelloRequest
+	(*HelloResponse)(nil),         // 1: services.HelloResponse
+	(*Person)(nil),                // 2: services.Person
+	nil,                           // 3: services.Person.ConutriesEntry
+	(*timestamppb.Timestamp)(nil), // 4: google.protobuf.Timestamp
+	(Gender)(0),                   // 5: services.Gender
 }
 var file_calculator_proto_depIdxs = []int32{
-	0, // 0: services.Calculator.Hello:input_type -> services.HelloRequest
-	1, // 1: services.Calculator.Hello:output_type -> services.HelloResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	4, // 0: services.HelloRequest.create_date:type_name -> google.protobuf.Timestamp
+	5, // 1: services.Person.gender:type_name -> services.Gender
+	3, // 2: services.Person.conutries:type_name -> services.Person.ConutriesEntry
+	4, // 3: services.Person.create_date:type_name -> google.protobuf.Timestamp
+	0, // 4: services.Calculator.Hello:input_type -> services.HelloRequest
+	1, // 5: services.Calculator.Hello:output_type -> services.HelloResponse
+	5, // [5:6] is the sub-list for method output_type
+	4, // [4:5] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_calculator_proto_init() }
@@ -155,13 +290,14 @@ func file_calculator_proto_init() {
 	if File_calculator_proto != nil {
 		return
 	}
+	file_gender_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_calculator_proto_rawDesc), len(file_calculator_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
