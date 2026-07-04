@@ -397,6 +397,94 @@ func (x *AverageResponse) GetResult() float64 {
 	return 0
 }
 
+type SumRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Number        int32                  `protobuf:"varint,1,opt,name=number,proto3" json:"number,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SumRequest) Reset() {
+	*x = SumRequest{}
+	mi := &file_calculator_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SumRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SumRequest) ProtoMessage() {}
+
+func (x *SumRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_calculator_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SumRequest.ProtoReflect.Descriptor instead.
+func (*SumRequest) Descriptor() ([]byte, []int) {
+	return file_calculator_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *SumRequest) GetNumber() int32 {
+	if x != nil {
+		return x.Number
+	}
+	return 0
+}
+
+type SumResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Result        int32                  `protobuf:"varint,1,opt,name=result,proto3" json:"result,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SumResponse) Reset() {
+	*x = SumResponse{}
+	mi := &file_calculator_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SumResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SumResponse) ProtoMessage() {}
+
+func (x *SumResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_calculator_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SumResponse.ProtoReflect.Descriptor instead.
+func (*SumResponse) Descriptor() ([]byte, []int) {
+	return file_calculator_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *SumResponse) GetResult() int32 {
+	if x != nil {
+		return x.Result
+	}
+	return 0
+}
+
 var File_calculator_proto protoreflect.FileDescriptor
 
 const file_calculator_proto_rawDesc = "" +
@@ -428,12 +516,18 @@ const file_calculator_proto_rawDesc = "" +
 	"\x0eAverageRequest\x12\x16\n" +
 	"\x06number\x18\x01 \x01(\x01R\x06number\")\n" +
 	"\x0fAverageResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\x01R\x06result2\xd0\x01\n" +
+	"\x06result\x18\x01 \x01(\x01R\x06result\"$\n" +
+	"\n" +
+	"SumRequest\x12\x16\n" +
+	"\x06number\x18\x01 \x01(\x05R\x06number\"%\n" +
+	"\vSumResponse\x12\x16\n" +
+	"\x06result\x18\x01 \x01(\x05R\x06result2\x88\x02\n" +
 	"\n" +
 	"Calculator\x128\n" +
 	"\x05Hello\x12\x16.services.HelloRequest\x1a\x17.services.HelloResponse\x12F\n" +
 	"\tFibonacci\x12\x1a.services.FibonacciRequest\x1a\x1b.services.FibonacciResponse0\x01\x12@\n" +
-	"\aAverage\x12\x18.services.AverageRequest\x1a\x19.services.AverageResponse(\x01B\fZ\n" +
+	"\aAverage\x12\x18.services.AverageRequest\x1a\x19.services.AverageResponse(\x01\x126\n" +
+	"\x03Sum\x12\x14.services.SumRequest\x1a\x15.services.SumResponse(\x010\x01B\fZ\n" +
 	"./servicesb\x06proto3"
 
 var (
@@ -448,7 +542,7 @@ func file_calculator_proto_rawDescGZIP() []byte {
 	return file_calculator_proto_rawDescData
 }
 
-var file_calculator_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_calculator_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_calculator_proto_goTypes = []any{
 	(*HelloRequest)(nil),          // 0: services.HelloRequest
 	(*HelloResponse)(nil),         // 1: services.HelloResponse
@@ -457,26 +551,30 @@ var file_calculator_proto_goTypes = []any{
 	(*FibonacciResponse)(nil),     // 4: services.FibonacciResponse
 	(*AverageRequest)(nil),        // 5: services.AverageRequest
 	(*AverageResponse)(nil),       // 6: services.AverageResponse
-	nil,                           // 7: services.Person.ConutriesEntry
-	(*timestamppb.Timestamp)(nil), // 8: google.protobuf.Timestamp
-	(Gender)(0),                   // 9: services.Gender
+	(*SumRequest)(nil),            // 7: services.SumRequest
+	(*SumResponse)(nil),           // 8: services.SumResponse
+	nil,                           // 9: services.Person.ConutriesEntry
+	(*timestamppb.Timestamp)(nil), // 10: google.protobuf.Timestamp
+	(Gender)(0),                   // 11: services.Gender
 }
 var file_calculator_proto_depIdxs = []int32{
-	8, // 0: services.HelloRequest.create_date:type_name -> google.protobuf.Timestamp
-	9, // 1: services.Person.gender:type_name -> services.Gender
-	7, // 2: services.Person.conutries:type_name -> services.Person.ConutriesEntry
-	8, // 3: services.Person.create_date:type_name -> google.protobuf.Timestamp
-	0, // 4: services.Calculator.Hello:input_type -> services.HelloRequest
-	3, // 5: services.Calculator.Fibonacci:input_type -> services.FibonacciRequest
-	5, // 6: services.Calculator.Average:input_type -> services.AverageRequest
-	1, // 7: services.Calculator.Hello:output_type -> services.HelloResponse
-	4, // 8: services.Calculator.Fibonacci:output_type -> services.FibonacciResponse
-	6, // 9: services.Calculator.Average:output_type -> services.AverageResponse
-	7, // [7:10] is the sub-list for method output_type
-	4, // [4:7] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	10, // 0: services.HelloRequest.create_date:type_name -> google.protobuf.Timestamp
+	11, // 1: services.Person.gender:type_name -> services.Gender
+	9,  // 2: services.Person.conutries:type_name -> services.Person.ConutriesEntry
+	10, // 3: services.Person.create_date:type_name -> google.protobuf.Timestamp
+	0,  // 4: services.Calculator.Hello:input_type -> services.HelloRequest
+	3,  // 5: services.Calculator.Fibonacci:input_type -> services.FibonacciRequest
+	5,  // 6: services.Calculator.Average:input_type -> services.AverageRequest
+	7,  // 7: services.Calculator.Sum:input_type -> services.SumRequest
+	1,  // 8: services.Calculator.Hello:output_type -> services.HelloResponse
+	4,  // 9: services.Calculator.Fibonacci:output_type -> services.FibonacciResponse
+	6,  // 10: services.Calculator.Average:output_type -> services.AverageResponse
+	8,  // 11: services.Calculator.Sum:output_type -> services.SumResponse
+	8,  // [8:12] is the sub-list for method output_type
+	4,  // [4:8] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_calculator_proto_init() }
@@ -491,7 +589,7 @@ func file_calculator_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_calculator_proto_rawDesc), len(file_calculator_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
