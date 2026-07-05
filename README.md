@@ -66,9 +66,6 @@
 3. Handshake: **(1)** the server sends its signed certificate → **(2)** the client
    verifies it against `ca.crt` → **(3)** communication is SSL-encrypted.
 
-> **Do not commit private keys** (`ca.key`, `server.key`, `server.pem`). They are
-> git-ignored — regenerate everything locally with `cd tls && ./gen.sh`.
-
 **ภาษาไทย**
 
 1. **Certificate Authority (CA)** ถือ `ca.key` (private) และออก `ca.crt` ซึ่งเป็น
@@ -77,9 +74,6 @@
    gRPC ใช้ได้), ส่งคำขอเซ็น (`server.csr`) ไปให้ CA แล้วได้ `server.crt` ที่ CA เซ็นกลับมา
 3. ขั้นตอน handshake: **(1)** server ส่ง certificate ที่เซ็นแล้ว → **(2)** client
    ตรวจสอบกับ `ca.crt` → **(3)** สื่อสารกันแบบเข้ารหัส SSL
-
-> **ห้าม commit private key** (`ca.key`, `server.key`, `server.pem`) — ถูก gitignore ไว้แล้ว
-> ใครโคลนไปให้สร้างใหม่เองด้วย `cd tls && ./gen.sh`
 
 ---
 
